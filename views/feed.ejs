@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News Feed</title>
+    <!--<link rel="stylesheet" href="feed.css">-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway&family=Roboto&display=swap" rel="stylesheet">
+    <style>
+    * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+        }
+
+    Body {
+            font-family: 'Roboto', sans-serif;
+            /* background-color: pink; */
+            background-image: url("/back.jpg");
+            background-attachment: fixed;
+            background-size: cover;
+            padding: 0;
+        }
+
+    .header {
+            display: flex;
+            background-color: black;
+            height: 65px;
+            margin-bottom: 50px;
+        }
+
+        .signup {
+            color: white;
+            width: 70px;
+            height: 35px;
+            float: right;
+            margin: 15px;
+            /* margin-left: 0px; */
+            margin-top: 15px;
+            border-radius: 40px;
+            background: transparent;
+            outline: 0;
+            border-style: solid;
+            border-width: 1px;
+            border-color: rgba(255, 255, 255, 0.616);
+            text-align: center;
+            padding-top: 0px;
+            text-decoration: none;
+        }
+        button.signup:hover{
+            cursor: pointer;
+            background-color: white;
+            color: black;
+        }
+        .inside{
+            margin-left: 0px;
+        }
+
+    .welcome {
+            /* background-color: wheat; */
+            text-align: center;
+            /* padding-top: 10px; */
+            padding-right: 100px;
+            color: white;
+            width: auto;
+            display: inline-block;
+            margin: auto;
+        }
+
+    .post{
+    display: flex;
+    width:50%;
+    height: 200px;
+    background-color: #1b1b1bb4;
+    /* border: 2px solid black; */
+    padding: 0px;
+    margin:auto;
+    margin-top: 25px;
+    /* border-radius: 15px */
+  }
+  .left{
+    height: 100%;
+    width: 30%;
+  }
+  
+  .post_image{
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding-left: 0;
+      object-fit:cover;
+      border-radius: 0% 0% 0% 0%;
+  }
+  
+  .post_text{
+    padding:2px;
+    color: #efecec;
+    font-family: 'Raleway', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
+    font-size: small;
+  }
+  .post_title{
+    color: #efecec;
+    text-decoration: none;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .right{
+      width: 70%;
+      height: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+  }
+  .post_title:hover{
+      color: gray;
+  }
+  div.like{
+    /* margin: auto; */
+    height: 15%;
+  }
+
+  .content{
+      margin: auto;
+      height: 80%;
+      overflow-y: hidden;
+  }
+  .like_button{
+      color: #efecec;
+        background-color: transparent;
+        width: 40px;
+        height: 20px;
+        /* padding: 15px; */
+        /* margin: 10px 0px; */
+        border: none;
+        cursor: pointer;
+        /* margin-left: 350px; */
+      border-radius: 10%;
+      float: right;
+  }
+  .like_button:hover{
+      background-color: whitesmoke;
+      color: black;
+  }
+  .caption{
+    margin: 5px;
+    font-size: small;
+    color: rgba(245, 245, 245, 0.705); 
+    /* margin-right: 250px;  */
+    padding: 3px 10px; 
+    border: whitesmoke solid 1px; 
+    border-radius: 20px;
+  }
+  .search{
+      width: 150px;
+  }
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        async function dothis(category){
+            console.log(category);
+            try{
+                username= document.querySelector('name').innerHTML.slice(1);
+            }catch{
+                username='aadil';
+                // console.log("name added manually");
+            }
+            // category='business';
+            if(typeof username  !== 'undefined'){
+                url='http://localhost:3000/feed'+'/'+username+'/'+category;
+                console.log(url)
+                const res = await axios.put(url);
+            }
+        }
+    </script>
+</head>
+<body>
+
+
+
+<div class="header">
+    <form action="/analysis" method="get">
+        <button class="signup">Analysis</button>
+    </form>
+    <form action="/" method="get">
+        <button class="signup inside">Chat</button>
+    </form>
+    <form action="./" method="get" hidden>
+        <input class="search signup inside" placeholder="Search" type="text" name="" id="">
+        <!-- <button class="signup">Chat</button> -->
+    </form>
+
+    <h1 class="welcome">Welcome<% if(typeof username  !== 'undefined'){ %><name><%= ' '+username %></name><% } %>.
+    </h1>
+    <form action="/login" method="get">
+        <button class="signup">Logout</button>
+    </form>
+</div>
+
+
+
+<% for(var i=0;i< 10;i++){%>
+
+
+<!-- tech -->
+<% if(i<tech.articles.length) {%>
+<div class="post">
+<div class="left">
+    <a href  =<%= tech.articles[i].url %>><img src=<%= tech.articles[i].urlToImage %>  alt="image not found" class="post_image"></a>
+</div> 
+<div class="right">
+    <div class="content">
+        <a href = <%= tech.articles[i].url %>><h3 class="post_title"> <%= tech.articles[i].title %></h3></a>
+        <p class="post_text"><%= tech.articles[i].description %></p>
+    </div>
+    <div class="like">
+        <span class="caption">Technology</span>
+            <button class="like_button technology" id="like<%= i %>" onclick="dothis('technology');this.style.color='black';this.style.backgroundColor='white';"  >Like</button> 
+    </div>
+</div>
+</div>
+<%} %>
+
+
+<!-- general -->
+<% if(i<gen.articles.length) {%>
+    <!-- <div class="post">
+    <div class="left">
+        <a href  =<%= gen.articles[i].url %>><img src=<%= gen.articles[i].urlToImage %>  alt="image not found" class="post_image"></a>
+    </div> 
+    <div class="right">
+        <div class="content">
+            <a href = <%= gen.articles[i].url %>><h3 class="post_title"> <%= gen.articles[i].title %></h3></a>
+            <p class="post_text"><%= gen.articles[i].description %></p>
+        </div>
+        <div class="like">
+                <button class="like_button" id="like<%= i %>" onclick="dothis();this.style.color='black';this.style.backgroundColor='white';"  >Like</button> 
+        </div>
+    </div>
+    </div> -->
+<%} %>
+
+
+<!-- business -->
+<% if(i<bsn.articles.length) {%>
+    <div class="post">
+    <div class="left">
+        <a href  =<%= bsn.articles[i].url %>><img src=<%= bsn.articles[i].urlToImage %>  alt="image not found" class="post_image"></a>
+    </div> 
+    <div class="right">
+        <div class="content">
+            <a href = <%= bsn.articles[i].url %>><h3 class="post_title"> <%= bsn.articles[i].title %></h3></a>
+            <p class="post_text"><%= bsn.articles[i].description %></p>
+        </div>
+        <div class="like">
+            <span class="caption">Business</span>
+                <button class="like_button business" id="like<%= i %>" onclick="dothis('business');this.style.color='black';this.style.backgroundColor='white';"  >Like</button> 
+        </div>
+    </div>
+    </div>
+<%} %>
+
+
+<!-- health -->
+<% if(i<health.articles.length) {%>
+    <div class="post">
+    <div class="left">
+        <a href  =<%= health.articles[i].url %>><img src=<%= health.articles[i].urlToImage %>  alt="image not found" class="post_image"></a>
+    </div> 
+    <div class="right">
+        <div class="content">
+            <a href = <%= health.articles[i].url %>><h3 class="post_title"> <%= health.articles[i].title %></h3></a>
+            <p class="post_text"><%= health.articles[i].description %></p>
+        </div>
+        <div class="like">
+            <span class="caption">Health</span>
+                <button class="like_button health" id="like<%= i %>" onclick="dothis('health');this.style.color='black';this.style.backgroundColor='white';"  >Like</button> 
+        </div>
+    </div>
+    </div>
+<%} %>
+
+
+<!-- scrience  sci.articles.length -->
+<% if(i<sci.articles.length) {%>
+    <div class="post">
+    <div class="left">
+        <a href  =<%= sci.articles[i].url %>><img src=<%= sci.articles[i].urlToImage %>  alt="image not found" class="post_image"></a>
+    </div> 
+    <div class="right">
+        <div class="content">
+            <a href = <%= sci.articles[i].url %>><h3 class="post_title"> <%= sci.articles[i].title %></h3></a>
+            <p class="post_text"><%= sci.articles[i].description %></p>
+        </div>
+        <div class="like">
+            <span class="caption">Science</span>
+                <button class="like_button science" id="like<%= i %>" onclick="dothis('science');this.style.color='black';this.style.backgroundColor='white';"  >Like</button> 
+        </div>
+    </div>
+    </div>
+<%} %>
+
+
+<!-- sports -->
+<% if(i<spt.articles.length) {%>
+    <div class="post">
+    <div class="left">
+        <a href  =<%= spt.articles[i].url %>><img src=<%= spt.articles[i].urlToImage %>  alt="image not found" class="post_image"></a>
+    </div> 
+    <div class="right">
+        <div class="content">
+            <a href = <%= spt.articles[i].url %>><h3 class="post_title"> <%= spt.articles[i].title %></h3></a>
+            <p class="post_text"><%= spt.articles[i].description %></p>
+        </div>
+        <div class="like">
+            <span class="caption">Sport</span>
+                <button class="like_button sport" id="like<%= i %>" onclick="dothis('sport');this.style.color='black';this.style.backgroundColor='white';"  >Like</button> 
+        </div>
+    </div>
+    </div>
+<%} %>
+
+
+<!-- entertainment -->
+<% if(i<et.articles.length) {%>
+    <div class="post">
+    <div class="left">
+        <a href  =<%= et.articles[i].url %>><img src=<%= et.articles[i].urlToImage %>  alt="image not found" class="post_image"></a>
+    </div> 
+    <div class="right">
+        <div class="content">
+            <a href = <%= et.articles[i].url %>><h3 class="post_title"> <%= et.articles[i].title %></h3></a>
+            <p class="post_text"><%= et.articles[i].description %></p>
+        </div>
+        <div class="like">
+            <span class="caption">Entertainment</span>
+                <button class="like_button entertainment" id="like<%= i %>" onclick="dothis('entertainment');this.style.color='black';this.style.backgroundColor='white';"  >Like</button> 
+        </div>
+    </div>
+    </div>
+<%} %>
+
+
+<%}%>
+
+
+
+</body> 
+</html>

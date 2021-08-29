@@ -1,0 +1,287 @@
+<html>
+<head>
+  <style>
+      /* html, body, #container {
+      width: 400px;
+      height: 400px;
+      margin: 0;
+      padding: 0;
+      } */
+      * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+        }
+
+    Body {
+            font-family: 'Roboto', sans-serif;
+            /* background-color: pink; */
+            background-image: url("/back.jpg");
+            background-attachment: fixed;
+            background-size: cover;
+            padding: 0;
+        }
+
+    .header {
+            display: flex;
+            background-color: black;
+            height: 65px;
+            margin-bottom: 50px;
+        }
+
+        .signup {
+            color: white;
+            width: 70px;
+            height: 35px;
+            float: right;
+            margin: 15px;
+            /* margin-left: 0px; */
+            margin-top: 15px;
+            border-radius: 40px;
+            background: transparent;
+            outline: 0;
+            border-style: solid;
+            border-width: 1px;
+            border-color: rgba(255, 255, 255, 0.616);
+            text-align: center;
+            padding-top: 0px;
+            text-decoration: none;
+        }
+        button.signup:hover{
+            cursor: pointer;
+            background-color: white;
+            color: black;
+        }
+        .inside{
+            margin-left: 0px;
+        }
+
+    .welcome {
+            /* background-color: wheat; */
+            text-align: center;
+            /* padding-top: 10px; */
+            padding-right: 80px;
+            color: white;
+            width: auto;
+            display: inline-block;
+            margin: auto;
+        }
+      #container{
+        width: 500px;
+      height: 500px;  
+      margin: 0;
+      padding: 0;
+      margin: auto;
+      margin-bottom: 90px;
+      }
+      canvas{
+        /* width: 400px; */
+      height: 400px;  
+      margin: 0;
+      padding: 0;
+      margin: auto;
+      margin-bottom: 90px;
+      }
+      .back{
+        width: 60%;
+        margin: auto;
+        background-color: rgba(0, 0, 0, 0.322);
+        padding: 30px 0;
+      }
+    </style>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+  <script>
+function draw(tech,sci,bsn,health,spt,et,gen) {
+  var canvas = document.getElementById("canvas");
+  var ctx = canvas.getContext("2d");
+  // total = tech+sci+bsn+health+spt+et+gen;
+  total = tech+sci+bsn+health+spt+et
+  a1 = 2*tech/total;
+  a2 = 2*sci/total;
+  a3 = 2*bsn/total;
+  a4 = 2*health/total;
+  a5 = 2*spt/total;
+  a6 = 2*et/total;
+  // a7 = 2*gen/total;
+  // Colors
+  var colors = ['green', 'pink', 'yellow', 'blue', 'orange', 'violet','grey'];
+  // var angles = [Math.PI * a1, Math.PI * a2, Math.PI * a3, Math.PI * a4, Math.PI * a5,Math.PI*a6,Math.PI*a7];
+  var angles = [Math.PI * a1, Math.PI * a2, Math.PI * a3, Math.PI * a4, Math.PI * a5,Math.PI*a6];
+  var beginAngle = 0;
+  var endAngle = 0;
+  for(var i = 0; i < angles.length; i = i + 1) {
+    beginAngle = endAngle;
+    endAngle = endAngle + angles[i];
+    
+    ctx.beginPath();
+    ctx.fillStyle = colors[i % colors.length];
+    ctx.moveTo(200, 200);
+    ctx.arc(200, 200, 120, beginAngle, endAngle);
+    ctx.lineTo(200, 200);
+    ctx.stroke();
+    ctx.fill();
+  }
+}
+
+</script>
+</head>
+<body>
+
+  <p1 style="display:none;"> <%= sci %> </p1>
+  <p2 style="display:none;"> <%= et %> </p2>
+  <p3 style="display:none;"> <%= spt %> </p3>
+  <p4 style="display:none;"> <%= tech %> </p4>
+  <p5 style="display:none;"> <%= health %> </p5>
+  <p6 style="display:none;"> <%= bsn %> </p6>
+
+  <div class="header">
+		<form action="./" method="get">
+			<button class="signup">Chat</button>
+		</form>
+		<form action="./feed" method="get">
+			<button class="signup inside">Feed</button>
+		</form>
+	
+		<h1 class="welcome">Analysis</h1>
+		<form action="./login" method="get">
+			<button class="signup">Logout</button>
+		</form>
+	</div>
+
+
+  <div class="back">
+  <center> <p style="color: black; font-weight: bold;">User Preferences</p> </center>
+  <!-- <center> <p style="color: white; font-weight: bold;">User Preferences</p> </center> -->
+  <center><canvas id="canvas" width="800" height="400"></canvas></center>
+  <script>
+
+  var sci = document.querySelector('p1').innerHTML;
+  var et = document.querySelector('p2').innerHTML;
+  var spt = document.querySelector('p3').innerHTML;
+  var tech = document.querySelector('p4').innerHTML;
+  var health = document.querySelector('p5').innerHTML;
+  var bsn = document.querySelector('p6').innerHTML;
+  console.log(sci,et,spt,tech,health,bsn);
+
+    // draw(60,43,34,23,10,17,28);
+    draw(tech*10,sci*10,bsn*10,health*10,spt*10,et*10,28);
+    // console.log(sci,et,spt,tech,health,bsn);
+    var canvas = document.getElementById("canvas");
+  var ctx = canvas.getContext("2d");
+    ctx.font = "20px Arial"
+ctx.fillStyle = "green"
+ctx.fillRect(450, 50, 70 , 30);
+ctx.fillText("Technology"+" "+Math.trunc( (a1/2)*100)+"%",550,75);
+ctx.fillStyle = "pink"
+ctx.fillRect(450, 100, 70 , 30);
+ctx.fillText("Science"+" "+Math.trunc( (a2/2)*100)+"%",550,125);
+ctx.fillStyle = "yellow"
+ctx.fillRect(450, 150, 70 , 30);
+ctx.fillText("Bussiness"+" "+Math.trunc( (a3/2)*100)+"%",550,175);
+ctx.fillStyle = "blue"
+ctx.fillRect(450, 200, 70 , 30);
+ctx.fillText("Health"+" "+Math.trunc( (a4/2)*100)+"%",550,225);
+ctx.fillStyle = "orange"
+ctx.fillRect(450, 250, 70 , 30);
+ctx.fillText("Sport"+" "+Math.trunc( (a5/2)*100)+"%",550,275);
+ctx.fillStyle = "violet"
+ctx.fillRect(450, 300, 70 , 30);
+ctx.fillText("Entertainment"+" "+Math.trunc( (a6/2)*100)+"%",550,325);
+// ctx.fillStyle = "grey"
+// ctx.fillRect(450, 350, 70 , 30);
+// ctx.fillText("General"+" "+Math.trunc( (a7/2)*100)+"%",550,375);
+
+  
+
+  </script>
+
+  <div id="container"></div>
+</div>
+  <script type="text/javascript">
+    anychart.onDocumentReady(function() {
+  // var data = [
+  //   {"x": "Mandarin chinese", "value": 1090000000, category: "Sino-Tibetan"},
+  //   {"x": "English", "value": 983000000, category: "Indo-European"},
+  //   {"x": "Hindustani", "value": 544000000, category: "Indo-European"},
+  //   {"x": "Spanish", "value": 527000000, category: "Indo-European"},
+  //   {"x": "Arabic", "value": 422000000, category: "Afro-Asiatic"},
+  //   {"x": "Malay", "value": 281000000, category: "Austronesian"},
+  //   {"x": "Russian", "value": 267000000, category: "Indo-European"},
+  //   {"x": "Bengali", "value": 261000000, category: "Indo-European"},
+  //   {"x": "Portuguese", "value": 229000000, category: "Indo-European"},
+  //   {"x": "French", "value": 229000000, category: "Indo-European"},
+  //   {"x": "Hausa", "value": 150000000, category: "Afro-Asiatic"},
+  //   {"x": "Punjabi", "value": 148000000, category: "Indo-European"},
+  //   {"x": "Japanese", "value": 129000000, category: "Japonic"},
+  //   {"x": "German", "value": 129000000, category: "Indo-European"},
+  //   {"x": "Persian", "value": 121000000, category: "Indo-European"}
+  // ];
+  var data = [
+    {"x": "IPL", "value": 74, category: "Sports"},
+    {"x": "Ravindra Jadeja", "value": 90 , category: "Sports"},
+    {"x": "RCB", "value": 67 , category: "Sports"},
+    {"x": "CSK", "value": 30, category: "Sports"},
+    {"x": "Devdutt Padikkal", "value" : 80 , category: "Sports"}, 
+    {"x": "Abhinav Bindra", "value": 71, category: "Sports"},
+    {"x": "Century", "value": 10, category: "Sports"},
+    {"x": "Bengal", "value": 90 , category: "General"},
+    {"x": "Mamata Banerjee", "value": 67, category: "General"},
+    {"x": "MK Stalin", "value": 48 , category: "General"},
+    {"x": "Narendra Modi", "value": 30 , category: "General"},
+    {"x": "Amit Shah", "value": 23 , category: "General"},
+    {"x": "Karnataka", "value": 84 , category: "General"},
+    {"x": "NV Ramana", "value": 70 , category: "General"},
+    {"x": "Vivek", "value": 80 , category: "Entertainment"},
+    {"x": "Bollywood", "value": 67, category: "Entertainment"},
+    {"x": "Sonu Sood", "value": 77 , category: "Entertainment"},
+    {"x": "Thalaivi", "value": 30 , category: "Entertainment"},
+    {"x": "Madhavan", "value": 50 , category: "Entertainment"},
+    {"x": "Rocketry", "value": 84 , category: "Entertainment"},
+    {"x": "Kangana Ranaut", "value": 56 , category: "Entertainment"},
+    {"x": "oxygen", "value":50  , category: "Health"},
+    {"x": "SARS-Cov-2", "value":10  , category: "Health"},
+    {"x": "Covid-19", "value":53  , category: "Health"},
+    {"x": "Covaxin", "value":40  , category: "Health"},
+    {"x": "Blood Clot", "value":63  , category: "Health"},
+    {"x": "Symptoms", "value":70  , category: "Health"},
+    {"x": "Kumbh", "value":30  , category: "Health"},
+    {"x": "ICMR", "value":12  , category: "Health"},
+    {"x": "electric cars", "value":29 , category: "Business"},
+  {"x": "gold price", "value":41 , category: "Business"},
+  {"x": "inox", "value":36 , category: "Business"},
+  {"x": "HDFC", "value":33 , category: "Business"},
+  {"x": "Reliance", "value":30 , category: "Business"},
+  {"x": "Diners", "value":43 , category: "Business"},
+  {"x": "NIFTY", "value":53 , category: "Business"},
+  {"x": "TATA", "value":37 , category: "Business"},
+    {"x": "Apple", "value":30  , category: "Technology"},
+    {"x": "Google", "value":20  , category: "Technology"},
+    {"x": "Lenovo", "value":23  , category: "Technology"},
+    {"x": "Xiaomi", "value":14  , category: "Technology"},
+    {"x": "One Plus", "value":11  , category: "Technology"},
+    {"x": "iphone", "value":17  , category: "Technology"},
+    {"x": "launch", "value":17  , category: "Technology"},
+    {"x": "twitter", "value":56  , category: "Technology"},
+    {"x": "smartphone", "value":23  , category: "Technology"}
+];
+
+ // create a tag (word) cloud chart
+  var chart = anychart.tagCloud(data);
+
+   // set a chart title
+  chart.title('Current trending topics')
+  // set an array of angles at which the words will be laid out
+  chart.angles([0])
+  // enable a color range
+  chart.colorRange(true);
+  // set the color range length
+  chart.colorRange().length('80%');
+
+  // display the word cloud chart
+  chart.container("container");
+  chart.draw();
+});
+  </script>
+</body>
+</html>

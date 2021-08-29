@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News Feed</title>
+    <!--<link rel="stylesheet" href="feed.css">-->
+    <style>
+    .post{
+    width:50%;
+    background-color: lightblue;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 15px
+  }
+  
+  .post_image{
+      width:30%;
+      float:left;
+      padding-right:10px;
+      border-radius:15px;
+  }
+  
+  .post_text{
+      padding:2px;
+  }
+    </style>
+</head>
+<body>
+
+<div class="jumbotron" style="color:black">
+</div>
+
+<div>
+  <form id="searchForm" method="POST" action="/feed">
+    <label>Search : </label>
+    <input type="text" name="search">
+    <input type="submit" value="search">
+  </form>
+</div>
+<!--<div class="container">-->
+<% for(var i=0;i<data.articles.length;i++){%>
+<div class="post">
+<p>
+<a href  =<%= data.articles[i].url %>> <img src=<%= data.articles[i].urlToImage %>  alt="image not found" class="post_image"></a> 
+<a href = <%= data.articles[i].url %>><h3 class="post_text"> <%= data.articles[i].title %></h3></a>
+<h4 class="post_text"><%= data.articles[i].description %></h4>
+<button>Like</button>
+</p>
+</div>
+<%}%>
+
+
+</body> 
+</html>

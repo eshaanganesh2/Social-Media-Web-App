@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="login.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Login Page </title>
+
+</head>
+
+<body>
+    <!-- <div class="header">
+        <img class="logo" src="logo.webp" alt="">
+        <h1 class="welcome">Welcome back.</h1>
+        <a href="signup" class="signup">Sign Up</a>
+    </div> -->
+
+    <div class="header">
+        <h1 class="welcome">Welcome.</h1>
+        <a href="signup" class="signup">Signup</a>
+    </div>
+    <center>
+        <form action="/login" method="POST">
+            <div class="container">
+                <h1>Login</h1>
+                <div class="new">
+                    New here? <a href="signup">Sign up for free.</a></div>
+                <!-- <label>Username : </label> -->
+                <% if(typeof message  !== 'undefined'){ %>
+                <%= message %>
+                <% } %>   
+                <input type="text" placeholder="Enter Username" name="username" required>
+                <!-- <label>Password : </label> -->
+                <input type="password" placeholder="Enter Password" name="password" required style="margin-bottom: 15px;">
+                <a class="forgot" href="#" >Forgot password? </a>
+                <label><input type="checkbox" checked="checked"> Remember me</label>
+                <button class="submit" type="submit">LOGIN</button>
+                <!-- OR
+                <button class="google" type="button">SIGN IN WITH GOOGLE</button>
+                <button class="fb" type="button">SIGN IN WITH FACEBOOK</button> -->
+            </div>
+        </form>
+    </center>
+</body>
+
+</html>

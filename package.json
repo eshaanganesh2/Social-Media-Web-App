@@ -1,0 +1,30 @@
+{
+  "name": "social-media-app",
+  "version": "2.0.0",
+  "description": "Displays a news feed, determines user taste by his/her interaction with feed and includes a chat component",
+  "main": "views/login.ejs",
+  "dependencies": {
+    "mongoose": "^5.12.5",
+    "nodemon": "^1.19.4",
+    "socket.io": "^2.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/eshaanganesh2/Social-Media-Web-App"
+  },
+  "keywords": [
+    "Natural",
+    "language",
+    "processing",
+    "node",
+    "js",
+    "socket.io"
+  ],
+  "author": "Eshaan Amin",
+  "license": "ISC"
+}

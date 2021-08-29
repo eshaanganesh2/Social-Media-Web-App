@@ -1,0 +1,144 @@
+Body {
+    font-family: 'Roboto', sans-serif;
+    /* background-color: pink; */
+    background-image: url("back.jpg");
+    background-size: cover;
+    padding: 0;
+}
+
+button {
+    background-color: #173320;
+    width: 100%;
+    color: white;
+    padding: 15px;
+    margin: 10px 0px;
+    border: none;
+    cursor: pointer;
+}
+.signup {
+    color: white;
+    width: 70px;
+    height: 25px;
+    float: right;
+    margin: 15px;
+    margin-left: 0px;
+    margin-top: 15px;
+    border-radius: 40px;
+    background: transparent;
+    outline: 0;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    text-align: center;
+    padding-top: 7px;
+    text-decoration: none;
+}
+.signup:hover{
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
+
+
+form {
+    /* border: 3px solid #f1f1f1; */
+    width: 30%;
+}
+
+input[type=text],
+input[type=password] {
+    width: 100%;
+    margin: 8px 0;
+    padding: 6px 0px;
+    display: inline-block;
+    box-sizing: border-box;
+    outline: 0;
+    border-width: 0 0 1px;
+    border-color: gray;
+    background:transparent
+}
+
+button:hover {
+    opacity: 0.7;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    margin: 10px 5px;
+}
+.container {
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.836);
+}
+
+label {
+    float: left;
+}
+
+.header {
+    display: flex;
+    background-color: black;
+    height: 65px;
+    margin-bottom: 50px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.welcome {
+    /* background-color: wheat; */
+    text-align: center;
+    /* padding-top: 10px; */
+    padding-left: 90px;
+    color: white;
+    width: auto;
+    display: inline-block;
+    margin: auto;
+}
+
+.new {
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+.fb{
+    background-color: 	#4267B2;
+    color: white;
+}
+.google{
+    background-color: 	#4285F4;
+    color: white;
+    margin-bottom: 0;
+}
+.forgot{
+    float: right;
+    margin-bottom: 10px;
+    font-size: small;
+}
+label{
+    float: left;
+    font-size: small;
+}
+.logo{
+    width: 35px;
+    margin-left: 10px;
+    object-fit: scale-down;
+    opacity: 0;
+}
+@media screen and (max-width: 1000px) and (min-width: 800px) {
+    form{
+        width: 40%;
+    }
+}
+@media screen and (max-width: 800px) and (min-width: 600px) {
+    form{
+        width: 50%;
+    }
+}
+@media screen and (max-width: 600px) {
+    form{
+        width: 80%;
+    }
+}
